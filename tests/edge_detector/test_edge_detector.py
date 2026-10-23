@@ -74,3 +74,8 @@ def test_edge_detector_simulation(sim: str, rising: int, tmp_path: Path) -> None
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+def test_directed_prefix_contains_both_edges() -> None:
+    levels = edge_sequence(12, 1)
+    assert {(0, 1), (1, 0)} <= set(zip(levels, levels[1:]))
