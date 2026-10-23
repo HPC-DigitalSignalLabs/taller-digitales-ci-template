@@ -1,0 +1,54 @@
+Infraestructura híbrida de CI/CD para diseño y verificación digital sobre FPGA
+Copyright 2026 Instituto Tecnológico de Costa Rica
+
+Trabajo Final de Graduación, Licenciatura en Ingeniería en Computadores,
+Escuela de Ingeniería en Computadores, Instituto Tecnológico de Costa Rica.
+Desarrollado para el curso CE3201 (Taller de Diseño Digital).
+
+This product includes software developed as part of the above work,
+licensed under the Apache License, Version 2.0 (see LICENSE).
+
+
+-------------------------------------------------------------------------------
+Sobre el trabajo del estudiante
+-------------------------------------------------------------------------------
+
+Este repositorio es una plantilla que se clona para realizar trabajos de curso.
+La licencia Apache-2.0 es permisiva: NO obliga a publicar los trabajos derivados.
+El diseño que un estudiante escriba en `src/` es suyo, y puede licenciarlo como
+quiera o no licenciarlo. Esa fue la razón de descartar el copyleft; ver
+`docs/decisions/ADR-0005-licenciamiento.md`.
+
+
+-------------------------------------------------------------------------------
+Componentes de terceros
+-------------------------------------------------------------------------------
+
+Esta infraestructura se apoya en las siguientes herramientas, que NO se
+distribuyen con este repositorio y conservan sus propias licencias:
+
+  Verilator            LGPL-3.0-or-later / Artistic-2.0
+  CocoTB               BSD-3-Clause
+  PyTest               MIT
+  Verible              Apache-2.0
+  FuseSoC / Edalize    BSD-2-Clause
+  openFPGALoader       AGPL-3.0
+  Apptainer            BSD-3-Clause
+
+El flujo de post-procesamiento de Quartus (`template/quartus/post_flow.tcl`)
+deriva del script homónimo de rgarciatec/ce3201, repositorio del curso.
+
+Intel Quartus Prime, Siemens Questa/ModelSim y las bibliotecas JTAG asociadas
+son software propietario, no se redistribuyen aquí, y se ejecutan bajo la
+licencia que posea cada estación de laboratorio.
+
+
+-------------------------------------------------------------------------------
+Nota sobre compatibilidad de licencias
+-------------------------------------------------------------------------------
+
+No debe incorporarse código bajo licencias copyleft (GPL, AGPL) al árbol de
+este repositorio: reintroduciría el copyleft sobre el trabajo del estudiante,
+que es exactamente lo que ADR-0005 decidió evitar. Invocar una herramienta
+copyleft como proceso separado (Verilator, openFPGALoader) no constituye
+incorporación y es legítimo.

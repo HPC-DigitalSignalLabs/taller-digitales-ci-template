@@ -1,0 +1,81 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Verilator / CocoTB
+sim_build/
+results/
+*.vcd
+*.fst
+*.xml
+!.github/**/*.xml
+
+# Quartus
+db/
+incremental_db/
+greybox_tmp/
+simulation/
+.qsys_edit/
+hps_isw_handoff/
+hc_output/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.pin
+*.sof
+*.pof
+*.jdi
+*.qdf
+*.done
+c5_pin_model_dump.txt
+
+# HPC / Kabré: las imágenes de contenedor y los logs de SLURM no se versionan.
+# Un .sif pesa cientos de MB y se reconstruye desde el Dockerfile anclado.
+*.sif
+*.simg
+slurm-*.out
+
+# Secretos y configuración local. Nada de esto debe llegar al repositorio,
+# menos aún con colaboradores externos con acceso de lectura.
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# The synthesis artifact and its provenance sidecar ARE tracked: the gatekeeper
+# needs them. These negations must come after the *.rpt rule above. The
+# authoritative output_files/ lives at the template root; the paths cover both a
+# shipped standalone template (repo root == template, so output_files/*) and
+# this monorepo (template/output_files/*).
+!output_files/*.flow.rpt
+!output_files/*.provenance.json
+!template/output_files/*.flow.rpt
+!template/output_files/*.provenance.json
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Editors / OS
+.DS_Store
+*.swp
+.vscode/
+!.vscode/extensions.json

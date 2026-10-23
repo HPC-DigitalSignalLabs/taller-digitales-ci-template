@@ -1,0 +1,4 @@
+# Keep this directory in version control even when empty.
+# Quartus writes compilation products here (PROJECT_OUTPUT_DIRECTORY). Build
+# products are ignored by .gitignore; the tracked flow report + provenance
+# sidecar the CI gate needs are the deliberate exceptions. See .gitignore here.

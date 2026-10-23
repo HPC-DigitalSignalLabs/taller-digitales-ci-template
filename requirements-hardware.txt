@@ -1,0 +1,2 @@
+# Native lab station only. Never install Quartus in the open verification image.
+intel-jtag-uart==0.0.3

@@ -1,0 +1,19 @@
+name: Reportar un fallo
+description: Algo del pipeline, las pruebas o el RTL no se comporta como se documenta
+labels: [bug]
+body:
+  - type: input
+    id: run
+    attributes:
+      label: Run de Actions o commit
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Esperado vs. observado
+    validations:
+      required: true
+  - type: textarea
+    id: reproducir
+    attributes:
+      label: Cómo reproducir
+      description: Comando make, DESIGN, SIM, WIDTH y TB_SEED.

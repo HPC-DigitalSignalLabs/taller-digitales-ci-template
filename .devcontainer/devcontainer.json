@@ -1,0 +1,26 @@
+{
+  "name": "digital-design-template",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "workspaceFolder": "/work",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/work,type=bind,consistency=cached",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mshr-h.veriloghdl",
+        "ms-python.python",
+        "surfer-project.surfer"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"],
+        "files.eol": "\n"
+      }
+    }
+  },
+  "remoteUser": "root",
+  "postCreateCommand": "verilator --version && python3 -m pytest tests/ -q --collect-only | tail -1"
+}

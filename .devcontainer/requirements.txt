@@ -1,0 +1,12 @@
+# Pinned verification environment. Every version here is exact, because 1:1
+# reproducibility across the DevContainer, Kabré and hosted runners is an
+# acceptance criterion of OE2, not a nicety.
+#
+# To upgrade: change one pin, run the full suite locally, and record the result.
+# Never relax a pin to make a build pass.
+
+cocotb==1.9.2
+cocotb-bus==0.2.1
+pytest==8.3.4
+pytest-html==4.1.1
+pyserial==3.5

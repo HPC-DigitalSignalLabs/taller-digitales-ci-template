@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Instituto Tecnológico de Costa Rica
+#
+# Quartus Project File (.qpf) for the digital-design-template.
+#
+# It declares two revisions, one per supported Terasic Cyclone V SoC board
+# (ADR-0008). Each revision has its own .qsf:
+#   * de1_soc       -> quartus/de1_soc.qsf       (DE1-SoC,      5CSEMA5F31C6)
+#   * de10_standard -> quartus/de10_standard.qsf (DE10-Standard, 5CSXFC6D6F31C6)
+#
+# de1_soc is the default target. Select the other revision with
+#   Project > Revisions...  in the GUI, or TARGET_BOARD=de10_standard for the
+# TCL/Make flow. Open this project with the TEMPLATE ROOT as the working
+# directory so the .qsf relative paths, POST_FLOW_SCRIPT_FILE and
+# PROJECT_OUTPUT_DIRECTORY resolve. See quartus/README.md.
+
+QUARTUS_VERSION = "18.1"
+
+# Revisions ---------------------------------------------------------------------
+
+PROJECT_REVISION = "de1_soc"
+PROJECT_REVISION = "de10_standard"

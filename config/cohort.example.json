@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "cohort": "Propuesta de prueba CE3201, semestre 2 de 2026",
+  "allowed_owners": ["ce3201-lab-ejemplo"],
+  "repositories": [
+    "ce3201-lab-ejemplo/ce3201-2026-s2-equipo-01",
+    "ce3201-lab-ejemplo/ce3201-2026-s2-equipo-02"
+  ],
+  "repository_name_regex": "^ce3201-2026-s2-equipo-[0-9]{2}$",
+  "collection": {
+    "window_days": 14,
+    "max_requests": 500,
+    "max_commits": 50,
+    "max_issues": 100,
+    "max_prs": 50,
+    "max_reviews_per_pr": 100,
+    "max_workflow_runs": 100,
+    "max_jobs_per_run": 100
+  },
+  "ci": {
+    "workflow_file": "gatekeeper.yml",
+    "required_jobs": ["Gatekeeper verdict"]
+  }
+}

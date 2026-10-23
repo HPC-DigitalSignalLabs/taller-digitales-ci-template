@@ -1,0 +1,19 @@
+{
+  "partition": "kura-wide",
+  "account": "tec",
+  "qos": "normal",
+  "module": "apptainer/1.2.5",
+  "module_init": "/opt/Modules/3.2.10/init/sh",
+  "runtime": "apptainer",
+  "image": "/work/shidalgo/images/digital-design-verify-1a5bbc6387b5e20eefc89c6ea05f412606abf641.sif",
+  "image_sha256": "eb966065def97367e1fa1a8d76247b520b66242de802632f49472f058cbe97e4",
+  "results_root": "/work/shidalgo/campaign-results",
+  "cpus": 1,
+  "memory_mb": 2048,
+  "time_minutes": 5,
+  "max_tasks": 4,
+  "max_concurrency": 2,
+  "max_cpus": 2,
+  "max_memory_mb": 4096,
+  "max_time_minutes": 10
+}

@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Instituto Tecnológico de Costa Rica
+#
+# output_files/ is where Quartus writes its compilation products
+# (PROJECT_OUTPUT_DIRECTORY). It lives at the TEMPLATE ROOT because that is the
+# project directory: build_project.tcl runs project_new from here, the committed
+# .qsf resolves PROJECT_OUTPUT_DIRECTORY output_files from here, post_flow.tcl
+# writes to <git-root>/output_files, and the CI artifact gate reads
+# output_files/<rev>.flow.rpt from here. All four converge on this directory.
+#
+# Most of those products are large, regenerable binaries and must NOT be
+# versioned.
+#
+# EXCEPTION -- this is the whole point of the CI artifact gate: the flow report
+# `<revision>.flow.rpt` and its provenance sidecar `<revision>.flow.rpt.provenance.json`
+# ARE committed on purpose. Quartus cannot run in CI (node-locked licence), so
+# the gate verifies these two files against the commit (see quartus/post_flow.tcl,
+# tools/artifact_gate.py and ADR-0006). The negations below re-include exactly
+# those two, and NOTHING here may ignore *.flow.rpt or *.provenance.json.
+
+# --- Ignore Quartus build products -------------------------------------------
+
+db/
+incremental_db/
+*.sof
+*.rbf
+*.pof
+*.qws
+*.jdi
+*.smsg
+*.done
+*.pin
+*.summary
+*.map.*
+*.fit.*
+*.sta.*
+
+# --- Keep the tracked evidence the gate needs --------------------------------
+# These negations MUST stay after the ignore rules above. Do not add any rule
+# that would re-ignore the flow report or its provenance sidecar.
+
+!*.flow.rpt
+!*.flow.rpt.provenance.json
+!*.provenance.json

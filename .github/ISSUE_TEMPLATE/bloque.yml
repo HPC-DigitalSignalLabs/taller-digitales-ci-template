@@ -1,0 +1,23 @@
+name: Proponer un bloque
+description: Nuevo bloque reutilizable para lib/
+labels: [bloque]
+body:
+  - type: input
+    id: nombre
+    attributes:
+      label: Nombre del bloque
+      placeholder: p. ej. pwm_generator
+    validations:
+      required: true
+  - type: textarea
+    id: interfaz
+    attributes:
+      label: Interfaz y parámetros
+      description: Puertos, anchos, parámetros, dominio de reloj y reset.
+    validations:
+      required: true
+  - type: textarea
+    id: verificacion
+    attributes:
+      label: Estrategia de verificación
+      description: Modelo de referencia, estímulos y propiedades que el checker comprobará.

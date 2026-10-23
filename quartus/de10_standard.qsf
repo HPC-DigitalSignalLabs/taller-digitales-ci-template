@@ -1,0 +1,63 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 Instituto Tecnológico de Costa Rica
+#
+# Quartus Settings File (.qsf) -- revision: de10_standard
+# Target: Terasic DE10-Standard, Intel Cyclone V SX 5CSXFC6D6F31C6.
+#
+# ============================ UNVERIFIED (BL-011) ============================
+# The DE10-Standard physical PIN ASSIGNMENTS have NOT been verified against the
+# official Terasic DE10-Standard user manual. To avoid fabricating confident
+# values, the location assignments below are provided as COMMENTED PLACEHOLDERS
+# marked `# VERIFY`. Before compiling a production bitstream you MUST fill each
+# `PIN_xxx` in from the manual and uncomment it. See docs/decisions/backlog.md
+# (BL-011) and ADR-0008. The device, top level, SDC binding and provenance
+# post-flow ARE correct and match build_project.tcl.
+# =============================================================================
+#
+# Like de1_soc.qsf, all relative paths resolve from the TEMPLATE ROOT (the
+# directory holding src/, lib/, quartus/, output_files/); open the project with
+# that directory as the working directory. See quartus/README.md.
+
+# --- Project / device ---------------------------------------------------------
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSXFC6D6F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY de10_standard_top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+# --- Timing constraints and post-flow provenance ------------------------------
+
+set_global_assignment -name SDC_FILE quartus/targets/de10_standard.sdc
+set_global_assignment -name POST_FLOW_SCRIPT_FILE "quartus_sh:quartus/post_flow.tcl"
+
+# --- Source search paths (student space + maintained library) -----------------
+
+set_global_assignment -name SEARCH_PATH src
+set_global_assignment -name SEARCH_PATH lib
+
+# --- SystemVerilog sources ----------------------------------------------------
+
+set_global_assignment -name SYSTEMVERILOG_FILE quartus/boards/de10_standard_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE quartus/boards/seg7_hex.sv
+set_global_assignment -name SYSTEMVERILOG_FILE src/counter.sv
+
+# --- Pin assignments: UNVERIFIED placeholders (BL-011) ------------------------
+# Fill in PIN_xxx from the official DE10-Standard user manual, then uncomment.
+# Do NOT copy the DE1-SoC pin table here: the boards do not share a pinout.
+
+# VERIFY: set_location_assignment PIN_<clk50>  -to CLOCK_50
+# VERIFY: set_location_assignment PIN_<key0>   -to KEY[0]
+# VERIFY: set_location_assignment PIN_<key1>   -to KEY[1]
+# VERIFY: set_location_assignment PIN_<key2>   -to KEY[2]
+# VERIFY: set_location_assignment PIN_<key3>   -to KEY[3]
+# VERIFY: set_location_assignment PIN_<sw0..9> -to SW[0..9]
+# VERIFY: set_location_assignment PIN_<ledr0..9> -to LEDR[0..9]
+# VERIFY: set_location_assignment PIN_<hexN_seg> -to HEXn[0..6]  (HEX0..HEX5)
+#
+# IO standard is expected to be "3.3-V LVTTL" for the teaching panel, but this
+# too must be confirmed against the manual before freezing this file:
+# VERIFY: set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+# VERIFY: set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[*]
+# VERIFY: set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[*]
+# VERIFY: set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[*]
+# VERIFY: set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX*[*]

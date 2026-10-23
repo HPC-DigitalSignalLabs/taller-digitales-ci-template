@@ -1,0 +1,9 @@
+# Force LF line endings for scripts that run on Kabré/Linux. SLURM's sbatch
+# refuses batch scripts with CRLF ("Batch script contains DOS line breaks"),
+# and a shebang line with a trailing \r breaks execve() ("bad interpreter").
+# Without this, editing these files on Windows (even via tools that respect
+# core.autocrlf) can silently reintroduce CRLF and break every future run.
+*.sh text eol=lf
+*.slurm text eol=lf
+Makefile text eol=lf
+*.mk text eol=lf
