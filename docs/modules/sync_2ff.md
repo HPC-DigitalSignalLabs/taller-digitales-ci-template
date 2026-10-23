@@ -242,3 +242,4 @@ Quartus. Añadir otro framework no resolvería esa limitación física.
 - Composición posterior: [edge_detector](edge_detector.md)
 
 Al depurar, registrar el ciclo de la primera muestra estable y no el del cambio asíncrono.
+Un pulso más corto que un periodo de `clk` puede no observarse.
