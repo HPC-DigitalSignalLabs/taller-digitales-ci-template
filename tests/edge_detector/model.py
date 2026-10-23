@@ -17,6 +17,6 @@ class EdgeDetectorModel:
             self.reset()
             return 0
         current = int(bool(level))
-        event = current != self.previous and current == self.rising
+        event = current != self.previous
         self.previous = current
         return int(event)
