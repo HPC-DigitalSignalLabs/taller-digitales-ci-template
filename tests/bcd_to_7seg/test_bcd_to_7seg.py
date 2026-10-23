@@ -56,3 +56,11 @@ def test_bcd_to_7seg_simulation(sim: str, tmp_path: Path) -> None:
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+def test_stimulus_is_exhaustive_then_a_seeded_permutation() -> None:
+    sequence = display_sequence(3)
+    first, second = sequence[:32], sequence[32:]
+    assert sorted(first) == sorted(second) == [(b, p) for b in range(16) for p in (0, 1)]
+    assert second != first
+    assert display_sequence(3) == sequence
