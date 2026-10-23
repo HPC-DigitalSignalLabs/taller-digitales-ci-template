@@ -8,7 +8,7 @@ from cocotb.triggers import FallingEdge, ReadOnly, RisingEdge, Timer
 
 from edge_detector.checker import EdgeDetectorChecker
 from edge_detector.model import EdgeDetectorModel
-from edge_detector.stimulus import edge_sequence
+from edge_detector.stimulus import edge_stimulus
 
 
 @cocotb.test()
@@ -25,7 +25,7 @@ async def test_selected_edges_and_reset(dut) -> None:
     await FallingEdge(dut.clk)
     dut.rst_n.value = 1
     # Finish with an active pulse so asynchronous reset is observable.
-    for level in edge_sequence(cycles, seed) + [1 - rising, rising]:
+    for level in edge_stimulus(cycles, seed) + [1 - rising, rising]:
         dut.signal_in.value = level
         await RisingEdge(dut.clk)
         await ReadOnly()
