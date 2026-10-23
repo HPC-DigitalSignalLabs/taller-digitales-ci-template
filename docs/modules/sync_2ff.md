@@ -240,3 +240,5 @@ Quartus. Añadir otro framework no resolvería esa limitación física.
 - RTL: `template/lib/sync_2ff/sync_2ff.sv`
 - Pruebas: `template/tests/sync_2ff/`
 - Composición posterior: [edge_detector](edge_detector.md)
+
+Al depurar, registrar el ciclo de la primera muestra estable y no el del cambio asíncrono.
