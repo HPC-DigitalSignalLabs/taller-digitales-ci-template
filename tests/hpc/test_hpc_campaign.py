@@ -643,10 +643,16 @@ class CampaignTests(unittest.TestCase):
                             build = work / "sim_build"
                             build.mkdir(exist_ok=True)
                             builds.append(build)
-                            names = ["junit.xml", "cocotb-verilator-counter-w8.xml"] if "pytest" in command else [
+                            # PyTest simulation tests write CocoTB XML below their
+                            # tmp_path (RESULTS_DIR override), not at the top level.
+                            names = ["junit.xml", "pytest-tmp/test_sim0/results/cocotb-verilator-counter-w8.xml"] \
+                                if "pytest" in command else [
                                 "cocotb-verilator-counter-w8.xml" if "SIM=verilator" in command else
                                 "cocotb-icarus-counter-w8.xml"]
+                            if "pytest" in command:
+                                self.assertIn("--basetemp=/work/results/pytest-tmp", command)
                             for name in names:
+                                (results / name).parent.mkdir(parents=True, exist_ok=True)
                                 (results / name).write_text(XML, encoding="utf-8")
                     return subprocess.CompletedProcess(command, 0, stdout="fake-runtime")
 

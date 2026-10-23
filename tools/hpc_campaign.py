@@ -408,11 +408,14 @@ def run_task(args: argparse.Namespace) -> int:
                 execute(["make", "sim", "DESIGN=counter", f"SIM={sim}", "WIDTH=8"])
                 expected.append(results / f"cocotb-{sim}-counter-w8.xml")
         else:
+            # Simulation tests redirect RESULTS_DIR to their tmp_path; pinning
+            # basetemp under results keeps that CocoTB evidence in the attempt.
             execute(["python3", "-m", "pytest", m["pytest_target"], "-m", "not hardware",
-                     "-p", "no:cacheprovider", "--junitxml=/work/results/junit.xml",
+                     "-p", "no:cacheprovider", "--basetemp=/work/results/pytest-tmp",
+                     "--junitxml=/work/results/junit.xml",
                      "--html=/work/results/report.html", "--self-contained-html", "-v"])
             expected = [results / "junit.xml"]
-            cocotb_xml = list(results.glob("cocotb-*.xml"))
+            cocotb_xml = sorted(results.rglob("cocotb-*.xml"))
             if not cocotb_xml:
                 raise ValueError("La regresión no produjo evidencia de simulación CocoTB.")
             expected.extend(cocotb_xml)
