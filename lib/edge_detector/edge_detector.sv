@@ -22,7 +22,7 @@ module edge_detector #(
       pulse    <= 1'b0;
     end else begin
       previous <= signal_in;
-      pulse <= RISING ? (signal_in && !previous) : (!signal_in && previous);
+      pulse <= RISING ? signal_in : !signal_in;
     end
   end
 endmodule
