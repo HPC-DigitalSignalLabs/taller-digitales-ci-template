@@ -63,3 +63,12 @@ def test_enabled_register_simulation(sim: str, width: int, tmp_path: Path) -> No
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+@pytest.mark.parametrize("width", [1, 8, 32])
+def test_stimulus_exercises_reset_enable_conflict(width: int) -> None:
+    maximum = (1 << width) - 1
+    sequence = register_sequence(width, 50, 9)
+    assert (maximum, 1, 0) in sequence
+    assert all(0 <= data <= maximum and enable in (0, 1) and rst_n in (0, 1)
+               for data, enable, rst_n in sequence)
