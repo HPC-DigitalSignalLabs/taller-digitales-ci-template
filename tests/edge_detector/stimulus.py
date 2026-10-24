@@ -3,7 +3,7 @@
 import random
 
 
-def edge_sequence(cycles: int, seed: int) -> list[int]:
+def edge_stimulus(cycles: int, seed: int) -> list[int]:
     if cycles < 1:
         raise ValueError("cycles must be positive")
     prefix = [1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1]

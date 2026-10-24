@@ -7,7 +7,7 @@ import pytest
 
 from .checker import EdgeDetectorChecker
 from .model import EdgeDetectorModel
-from .stimulus import edge_sequence
+from .stimulus import edge_stimulus
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -34,9 +34,9 @@ def test_configuration_and_seed() -> None:
     with pytest.raises(ValueError):
         EdgeDetectorModel(2)
     with pytest.raises(ValueError):
-        edge_sequence(0, 1)
-    assert edge_sequence(100, 7) == edge_sequence(100, 7)
-    assert edge_sequence(100, 7) != edge_sequence(100, 8)
+        edge_stimulus(0, 1)
+    assert edge_stimulus(100, 7) == edge_stimulus(100, 7)
+    assert edge_stimulus(100, 7) != edge_stimulus(100, 8)
 
 
 @pytest.mark.parametrize("rising", [0, 1])
@@ -44,7 +44,7 @@ def test_configuration_and_seed() -> None:
 def test_checker_detects_faults(rising: int, fault: str) -> None:
     model, opposite = EdgeDetectorModel(rising), EdgeDetectorModel(1 - rising)
     checker = EdgeDetectorChecker()
-    for level in edge_sequence(100, 7):
+    for level in edge_stimulus(100, 7):
         expected = model.tick(level)
         wrong = opposite.tick(level)
         actual = {"wrong-polarity": wrong, "stuck-low": 0,
