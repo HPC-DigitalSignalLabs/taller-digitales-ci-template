@@ -66,3 +66,9 @@ def test_sync_2ff_simulation(sim: str, tmp_path: Path) -> None:
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+def test_stimulus_contains_every_level_transition() -> None:
+    levels = level_sequence(500, 11)
+    assert set(levels) == {0, 1}
+    assert {(0, 0), (0, 1), (1, 0), (1, 1)} <= set(zip(levels, levels[1:]))
