@@ -1,5 +1,5 @@
 # El pipeline y su propia política requieren revisión de un responsable
 # distinto del autor. El resto del árbol sigue el flujo PR + gatekeeper + cola.
-/.github/               @rgarciatec @Katharsis0
-/tools/artifact_gate.py @rgarciatec @Katharsis0
-/tools/human_report.py  @rgarciatec @Katharsis0
+/.github/               @Katharsis-Doppelganger @Katharsis0
+/tools/artifact_gate.py @Katharsis-Doppelganger @Katharsis0
+/tools/human_report.py  @Katharsis-Doppelganger @Katharsis0
