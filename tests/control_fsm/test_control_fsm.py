@@ -63,3 +63,10 @@ def test_control_fsm_simulation(sim: str, tmp_path: Path) -> None:
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+def test_stimulus_exercises_simultaneous_requests_and_reset() -> None:
+    sequence = control_sequence(200, 4)
+    assert (1, 1, 1) in sequence and (1, 1, 0) in sequence
+    assert sum(1 for *_, rst_n in sequence if not rst_n) >= 2
+    assert control_sequence(200, 4) == sequence
