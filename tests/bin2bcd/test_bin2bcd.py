@@ -72,3 +72,11 @@ def test_bin2bcd_simulation(sim: str, width: int, tmp_path: Path) -> None:
         cwd=ROOT, capture_output=True, text=True, timeout=180,
     )
     assert proc.returncode == 0, proc.stdout[-6000:] + proc.stderr[-3000:]
+
+
+@pytest.mark.parametrize("width", [11, 16, 20])
+def test_wide_stimulus_fits_width_and_hits_boundaries(width: int) -> None:
+    maximum = (1 << width) - 1
+    values = binary_sequence(width, 64, 5)
+    assert all(0 <= value <= maximum for value in values)
+    assert {0, maximum, 999, 1000, 1023, 1024} <= set(values)
